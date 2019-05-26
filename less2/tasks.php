@@ -23,3 +23,10 @@ $arr = [
     'count' => 4
 ],
 ];
+
+$res = [];
+foreach ($arr as $key => $value) {
+$res[$key] = $value['price'];
+}
+array_multisort($res, SORT_DESC, SORT_NUMERIC, $arr );
+print_r($arr);
