@@ -28,7 +28,7 @@ $goods = [
 <body>
 
 <section>
-    <?php foreach ($goods as $good):?>
+    <?php foreach ($goods as $good): ?>
         <article>
             <h3><?php echo $good['title']?></h3>
             <img src="/img/<?php echo $good['img'];?>" alt="<?php echo $good['img'];?>">
