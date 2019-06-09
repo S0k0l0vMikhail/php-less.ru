@@ -1,38 +1,55 @@
 <?php
-//$ogLink = $_POST['url'];
-$ogLink = 'http://php-less.ru/less5/';
-//var_dump($post['url']);
-// var_dump(filter_var($post['url'], FILTER_VALIDATE_URL));
-// echo filter_var($post['url'], FILTER_VALIDATE_URL);
-function cutlink($link){
-  $domaine = 'mysite.ru/';
-  $arrLinks = [];
-  $isLink = filter_var($link, FILTER_VALIDATE_URL);
-  if ($link && ($isLink != false)) {
-    $hash = md5($link);
-    echo "0";
-    foreach ($arrLinks as $key => $value) {
-      echo "1";
-      // if ($hash != $arrLinks[$key]) {
-      //   echo "2";
-      //   $arrLinks = ["$hash" => "$domaine .= random_int(1000, 9999)"];
-      //   $shortLink = $arrLinks[$key];
-      // } else {
-      //   echo "3";
-      //   $shortLink = $arrLinks[$key];
-      // }
-      $res = 1;
-    }
-    echo $res;
-    //$domaine .= random_int(1000, 9999);
-    //echo $domaine;
-    echo "ok";
+//$link = $_POST['url'];
 
+$link = 'https://yandex.ru/';
+//$link = 'https://www.php.net/manual/ru/function.file-put-contents.php';
+// $isLink = filter_var($link, FILTER_VALIDATE_URL);
+// $hash = md5($isLink);
+// var_dump($hash);
+
+function cutlink($oglink){
+  $file = 'links.txt';
+  $domaine = 'mysite.ru/';
+  $hash = md5($oglink);
+  $isLink = filter_var($oglink, FILTER_VALIDATE_URL);
+  $flag = true;
+  if ($oglink && ($isLink != false)) {
+    $offset = 0;
+    $maxlen = 49;
+    $res = file_get_contents($file, false, NULL, $offset);
+    //var_dump($res);
+    if ($res) {
+      for ($offset=0; $flag == true; $offset+=49) {
+        $res = file_get_contents($file, false, NULL, $offset, $maxlen);
+        $str = explode(":", $res);
+        $i=0;
+        //var_dump($str[$i] . " результат перебора строк из файла");
+        $hashFromFile = $str[$i];
+        //var_dump("созданный в начале хэш: " . $hash . " и полученная из файла строка: " . $hashFromFile . " состояние флага " . $flag);
+        $i++;
+        if($hash == $hashFromFile) $flag = false;
+        //var_dump("состояние флага после сравнения " . $flag);
+      }
+    }
+      if ($flag) {
+        //echo "не равен <br>";
+        $shortLink = $domaine . random_int(1000, 9999);
+        //var_dump($shortLink . " созданая короткая ссылка");
+        $coupleLinks = $hash.":".$shortLink.PHP_EOL;
+        file_put_contents($file, $coupleLinks, FILE_APPEND | LOCK_EX);
+        //var_dump("your short link: " .$shortLink);
+      } else {
+        //echo "равен <br>";
+        $shortLink = $str[1];
+        //var_dump($shortLink);
+      }
+    echo "ok";
+    return $shortLink;
   } else {
     echo "no ok";
+    return $error = "link is empty or is it not link";
   }
+
 }
 
-cutlink($ogLink);
-//file_put_contents('links.txt', 'hello', FILE_APPEND || LOCK_EX);
-//var_dump(file_get_contents('links.txt', false, NULL));
+var_dump(cutlink($link));

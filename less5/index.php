@@ -7,7 +7,7 @@
   <title>Document</title>
 </head>
 <body>
-  <form class="" action="linkcut.php" method="post">
+  <form class="" action="linkcut.php" method="POST">
     <p><input type="url" name="url"></p>
     <p>
         <input type="submit" value="Отправить">
