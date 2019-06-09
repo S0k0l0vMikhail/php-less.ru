@@ -1,6 +1,1 @@
-425c9a211f1d3fc3ce7bd0db42fd148d:mysite.ru/6238
-425c9a211f1d3fc3ce7bd0db42fd148d:mysite.ru/9896
-425c9a211f1d3fc3ce7bd0db42fd148d:mysite.ru/3649
-425c9a211f1d3fc3ce7bd0db42fd148d:mysite.ru/3277
-425c9a211f1d3fc3ce7bd0db42fd148d:mysite.ru/3014
-425c9a211f1d3fc3ce7bd0db42fd148d:mysite.ru/3595
+30b7df27e9f842b33cf9e517c98a075e:mysite.ru/3809

@@ -1,9 +1,9 @@
 <?php
 //$link = $_POST['url'];
 
-//$link = 'https://yandex.ru/';
-$link = 'https://yandex.ru/yandsearch?win=44&clid=37246&text=%D1%86%D1%8B%D0%BA%D0%BB&lr=2&redircnt=1560098511.1';
-//$link = 'https://www.php.net/manual/ru/function.file-put-contents.php';
+$link = 'https://yandex.ru/';
+//$link = 'https://yandex.ru/yandsearch?win=44&clid=37246&text=%D1%86%D1%8B%D0%BA%D0%BB&lr=2&redircnt=1560098511.1';
+$link = 'https://www.php.net/manual/ru/function.file-put-contents.php';
 // $isLink = filter_var($link, FILTER_VALIDATE_URL);
 // $hash = md5($isLink);
 // var_dump($hash);
@@ -25,15 +25,16 @@ function cutlink($oglink){
         var_dump($offset. " offset при начале перебора");
         $maxlen = 49;
         $res = file_get_contents($file, false, NULL, $offset, $maxlen);
+        var_dump($res);
         $str = explode(":", $res);
         var_dump($str);
         var_dump("массив после explode");
-        //$i = $i + 49;
+        //$i = 0;
         //var_dump("i ". $i);
         var_dump($str[$i] . " результат перебора строк из файла");
-        $hashFromFile = $str[$i];
+        $hashFromFile = $str[0];
         var_dump("созданный в начале хэш: " . $hash . " и полученная из файла строка: " . $hashFromFile . " состояние флага " . $flag);
-        $i++;
+        //$i++;
         if($hash == $hashFromFile) {$flag = false;} else {$flag = true;};
         var_dump("состояние флага после сравнения " . $flag);
       }
