@@ -31,7 +31,7 @@ function cutlink($oglink){
         var_dump("массив после explode");
         //$i = 0;
         //var_dump("i ". $i);
-        var_dump($str[$i] . " результат перебора строк из файла");
+        var_dump($str[0] . " результат перебора строк из файла");
         $hashFromFile = $str[0];
         var_dump("созданный в начале хэш: " . $hash . " и полученная из файла строка: " . $hashFromFile . " состояние флага " . $flag);
         //$i++;
